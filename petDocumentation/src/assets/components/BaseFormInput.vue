@@ -47,7 +47,8 @@ input[type="file"] {
 .one-form-container p {
   width: 15vw;
   font-size: 1.2rem;
-  font-weight: 600;}
+  font-weight: 600;
+}
 
 .upload {
   width: 40px;
@@ -68,8 +69,5 @@ input[type="file"] {
   justify-content: space-around;
   margin-left: 20px;
 }
-button {
-  background-color: transparent;
-  border: none;
-}
+
 </style>

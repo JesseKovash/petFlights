@@ -6,7 +6,7 @@
         alt="Avvinue Header"
       />
     </header>
-    <div class="country-container">
+    <div class="country-container" v-if="!currentCountryData">
       <base-card
         v-for="country in countries"
         :countryName="country.Country"
@@ -18,6 +18,7 @@
     <form-upload
       :docs="requiredDocs"
       :countryData="this.currentCountryData"
+      v-if="currentCountryData"
     ></form-upload>
   </div>
 </template>
@@ -78,7 +79,6 @@ export default {
             },
           }
         );
-        console.log(response.data[0]);
         this.currentCountryData = response.data[0];
         this.findRequiredDocs();
       } catch (error) {
@@ -110,12 +110,14 @@ body {
 
 header {
   font-size: 36px;
+  border-bottom: 1px solid rgb(176, 177, 177);
 }
 
 .country-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
+  margin-top: 30px;
 }
 </style>
 
