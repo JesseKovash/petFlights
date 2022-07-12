@@ -13,6 +13,7 @@ dist
 dist-ssr
 coverage
 *.local
+.eslintrc.cjs
 
 /cypress/videos/
 /cypress/screenshots/

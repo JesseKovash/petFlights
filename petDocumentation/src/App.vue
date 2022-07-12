@@ -17,7 +17,7 @@
     </div>
     <form-upload
       :docs="requiredDocs"
-      :countryName="this.currentCountry"
+      :countryData="this.currentCountryData"
     ></form-upload>
   </div>
 </template>
@@ -105,6 +105,7 @@ export default {
 body {
   margin: 0;
   padding: 20px;
+  font-family: sans-serif;
 }
 
 header {
