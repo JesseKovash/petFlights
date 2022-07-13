@@ -1,9 +1,6 @@
 const express = require("express");
 var cors = require("cors");
-const {
-  getAllCountries,
-  getOneCountry,
-} = require("../database/index");
+const { getAllCountries, getOneCountry } = require("../database/index");
 const app = express();
 app.use(cors());
 express.json();
@@ -14,7 +11,7 @@ app.get("/allCountryData", async (req, res) => {
     const response = await getAllCountries();
     res.status(200).send(response);
   } catch (error) {
-    console.log(error);
+    res.status(404).send(error);
   }
 });
 
@@ -22,9 +19,9 @@ app.get("/country/:id", async (req, res) => {
   try {
     const country = req.params.id;
     const response = await getOneCountry(country);
-    res.status(200).send(response)
+    res.status(200).send(response);
   } catch (error) {
-    console.log(error);
+    res.status(404).send(error);
   }
 });
 

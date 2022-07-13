@@ -2,9 +2,7 @@
   <div class="file-upload-container">
     <h1>
       Upload required documents for pet travel to
-      <!-- {{ countryData.Country }}({{
-        countryData["Country Code"]
-      }}) -->
+      {{ countryData?.Country }}({{ countryData["Country Code"] }})
     </h1>
     <base-form-input
       v-for="title in docs"
@@ -12,7 +10,9 @@
       :docName="title"
     ></base-form-input>
     <div class="form-btn-container">
-      <button class="form-btn-cancel" type="button">Cancel</button>
+      <button class="form-btn-cancel" type="button" @click="cancelUpload">
+        Cancel
+      </button>
       <button class="form-btn-upload" type="button">Upload</button>
     </div>
   </div>
@@ -21,7 +21,7 @@
 <script>
 import BaseFormInput from "./BaseFormInput.vue";
 export default {
-  props: ["docs", "countryData"],
+  props: ["docs", "countryData", "cancelUpload"],
   components: { BaseFormInput },
 };
 </script>
@@ -30,17 +30,16 @@ export default {
 .file-upload-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  max-width: 900px;
   width: 80vw;
   margin: 0 auto;
   position: relative;
+  color: rgb(176, 177, 177);
 }
 
 .form-btn-container {
-  position: absolute;
   display: flex;
-  top: 100%;
-  left: 90%;
+  margin-left: auto;
 }
 
 button {
@@ -59,15 +58,14 @@ button {
 }
 
 .form-btn-upload {
-  background: linear-gradient(90deg,#ff6cff,#a200ff);
+  background: linear-gradient(90deg, #ff6cff, #a200ff);
   color: white;
   border: 1px solid #d157f2;
   border-radius: 4px;
 }
 
-.form-btn-cancel:hover, .form-btn-upload:hover {
+.form-btn-cancel:hover,
+.form-btn-upload:hover {
   cursor: pointer;
 }
-
-
 </style>

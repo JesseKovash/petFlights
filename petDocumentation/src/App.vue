@@ -8,16 +8,18 @@
     </header>
     <div class="country-container" v-if="!currentCountryData">
       <base-card
-        v-for="country in countries"
+        v-for="(country, index) in countries"
         :countryName="country.Country"
         :img="country.Flag_image_url"
         :key="country._id"
+        :num="index"
         @click="showCountryUpload(country.Country)"
       ></base-card>
     </div>
     <form-upload
       :docs="requiredDocs"
       :countryData="this.currentCountryData"
+      :cancelUpload="cancelUpload"
       v-if="currentCountryData"
     ></form-upload>
   </div>
@@ -38,8 +40,25 @@ export default {
   },
   components: { BaseCard, FormUpload },
   methods: {
+    cancelUpload() {
+      this.currentCountryData = null;
+      const params = new URLSearchParams(window.location.search);
+      params.delete("cid");
+      history.pushState(
+        {},
+        "choseCountry",
+        `http://localhost:3000/${
+          params.keys().length ? "?" + params.toString() : ""
+        }`
+      );
+    },
     showCountryUpload(cid) {
       this.currentCountry = cid;
+      history.pushState(
+        {},
+        "choseCountry",
+        `http://localhost:3000/?cid=${cid}`
+      );
       this.getCountryRequirements();
     },
     findRequiredDocs() {
@@ -67,7 +86,6 @@ export default {
         docs.push("Import Permit");
       }
       this.requiredDocs = docs;
-      console.log(this.requiredDocs);
     },
     async getCountryRequirements() {
       try {
@@ -92,6 +110,11 @@ export default {
     },
   },
   async beforeMount() {
+    const params = new URLSearchParams(window.location.search);
+    const urlCountry = params.get("cid");
+    if (urlCountry) {
+      this.showCountryUpload(urlCountry);
+    }
     this.getAllCountryData();
   },
 };
@@ -106,6 +129,7 @@ body {
   margin: 0;
   padding: 20px;
   font-family: sans-serif;
+  color: #002150;
 }
 
 header {
