@@ -34,7 +34,8 @@ export default {
   width: 80vw;
   margin: 0 auto;
   position: relative;
-  color: rgb(176, 177, 177);
+  color: #002150;
+
 }
 
 .form-btn-container {
