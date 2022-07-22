@@ -129,7 +129,7 @@ body {
   margin: 0;
   padding: 20px;
   font-family: sans-serif;
-  color: #002150;
+  color: #30364d;
 }
 
 header {

@@ -1,14 +1,11 @@
 <template>
   <div class="file-upload-container">
-    <h1>
+    <p>
       Upload required documents for pet travel to
       {{ countryData?.Country }}({{ countryData["Country Code"] }})
-    </h1>
-    <base-form-input
-      v-for="title in docs"
-      :key="title"
-      :docName="title"
-    ></base-form-input>
+    </p>
+    <base-form-input v-for="title in docs" :key="title" :docName="title">
+    </base-form-input>
     <div class="form-btn-container">
       <button class="form-btn-cancel" type="button" @click="cancelUpload">
         Cancel
@@ -27,6 +24,11 @@ export default {
 </script>
 
 <style scoped>
+p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0 0 20px 0;
+}
 .file-upload-container {
   display: flex;
   flex-direction: column;
@@ -35,7 +37,6 @@ export default {
   margin: 0 auto;
   position: relative;
   color: #002150;
-
 }
 
 .form-btn-container {
@@ -69,4 +70,5 @@ button {
 .form-btn-upload:hover {
   cursor: pointer;
 }
+
 </style>
